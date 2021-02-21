@@ -65,6 +65,7 @@ WEBBY_DO_APP/static/
 ./static/
 static/
 media/
+.idea/
 
 
 # Flask stuff:

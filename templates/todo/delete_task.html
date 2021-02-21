@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<p>Are you sure you want to delete: "{{ task }}" ??</p>
+    <a href="{% url 'task_list' %}"> Cancel</a>
+    <form action="" method= "POST">
+        {% csrf_token %}
+        <input type="submit" name="Delete" >
+    </form>
+
+{% endblock %}
+
+
+
+    
+ 

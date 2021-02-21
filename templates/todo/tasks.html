@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+    <h1>MY TASKS</h1>
+
+    
+    <form action="/" method="POST">
+        {% csrf_token %}
+        {{ form.task }}
+        <input type="submit" name="Create Task" >
+
+    </form>
+
+    {% for task in tasks %}
+    <div>
+
+        {% if task.completed == True %}
+
+        <a href="{% url 'update_task' task.id %}">Edit</a>
+        <s>{{ task }}</s>
+        <a href="{% url 'delete_task' task.id %}">Delete</a>
+
+        {% else %}
+
+        <a href="{% url 'update_task' task.id %}">Edit</a>
+        <span> {{ task }}</span>
+        <a href="{% url 'delete_task' task.id %}">Delete</a>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+    <img src="{% static 'css/task.css' %}" alt="My image" >
+
+{% endblock %}

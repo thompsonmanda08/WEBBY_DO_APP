@@ -1,11 +1,18 @@
 from django.shortcuts import render, redirect
 from .models import Task
 from .forms import TaskForm
+from datetime import date, datetime
 
 
 def index(request):
     tasks = Task.objects.all()
     form = TaskForm()
+
+    today = date.today()
+    date_today = today.strftime("%B %d, %Y")
+
+    now = datetime.now()
+    time_now = now.strftime("%H:%M")
 
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -16,8 +23,11 @@ def index(request):
         return redirect('/')
 
     context = {
-        'todo': tasks,
+        'tasks': tasks,
         'form': form,
+
+        'date_today': date_today,
+        'time_now': time_now,
     }
     return render(request, 'todo/tasks.html', context)
 
@@ -37,7 +47,7 @@ def update_task(request, pk):
     context = {
         'form': form,
     }
-    return render(request, '/', context)
+    return render(request, 'todo/update_task.html', context)
 
 
 def delete_task(request, pk):

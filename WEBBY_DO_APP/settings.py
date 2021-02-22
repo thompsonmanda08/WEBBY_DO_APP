@@ -21,7 +21,6 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -128,15 +127,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
-STATIC_ROOT = STATIC_DIR
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = MEDIA_DIR
-
-STATICFILES_DIR = [
-    BASE_DIR / "static",
+STATICFILES_DIRS = [
     STATIC_DIR,
-    MEDIA_DIR,
+    BASE_DIR / "static",
 ]
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
